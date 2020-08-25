@@ -47,8 +47,6 @@ public class MemberController {
 	} else {
 		new MemberMenu().displayFail("등록되어있지 않습니다.");
 	}
-
-		
 		
 	}
 

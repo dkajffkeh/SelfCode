@@ -49,16 +49,12 @@ public class MemberDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-		
-		try { 	
-          if(pstmt!=null) {pstmt.close();}			
-		  if(conn!=null) {conn.close();}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		}
-		
+		} 
+
+	    JDBCTemplate.close(pstmt);	    
+	    JDBCTemplate.close(conn);
+	    
+	    
 	   return result;
 		
 	}
@@ -102,18 +98,12 @@ public class MemberDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			
-			try {
-				rs.close();
-				stmt.close();
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-									
-		}
+		} 
+		
+	    JDBCTemplate.close(rs);
+	    JDBCTemplate.close(stmt);	    
+	    JDBCTemplate.close(conn);
+	  
        return list;
 	}
 
@@ -130,8 +120,7 @@ public class MemberDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			
-			
+						
 			while(rs.next()) {
 				
 				if(string.equals(rs.getString("USERID"))) {
@@ -141,21 +130,14 @@ public class MemberDao {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
 			
-			try {
-				rs.close();
-				pstmt.close();
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	
-		}
-	    
+			e.printStackTrace();
+		} 
+
+	    JDBCTemplate.close(rs);
+	    JDBCTemplate.close(pstmt);	    
+	    JDBCTemplate.close(conn);
+	    	    
 		return false;
 		
 	}
@@ -186,17 +168,11 @@ public class MemberDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			
-			try {
-				rs.close();
-				pstmt.close();
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 	
-		}
+		} 
+
+	    JDBCTemplate.close(rs);
+	    JDBCTemplate.close(pstmt);	    
+	    JDBCTemplate.close(conn);    
 	    
 		return false;		
 	}
@@ -215,9 +191,7 @@ public class MemberDao {
 				+ "   FROM   MEMBER"
 				+ "   WHERE USERNAME = ?"
 				+ "   AND   USERSSN  = ?";
-				
-		
-		
+	
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, name);
@@ -238,18 +212,12 @@ public class MemberDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}  finally {
-			
-			try {
-				rs.close();
-				pstmt.close();
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 	
-		}
-		
+		}  
+
+	    JDBCTemplate.close(rs);
+	    JDBCTemplate.close(pstmt);	    
+	    JDBCTemplate.close(conn);
+	    
 		return id;
 	}
 
@@ -281,18 +249,13 @@ public class MemberDao {
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
-		} finally {
-			
-			try {
-				rs.close();
-				pstmt.close();
-				conn.close();
-			} catch (SQLException e) {
-				
-				e.printStackTrace();
-			} 	
-		}		
-		return true;
+		} 
+
+	    JDBCTemplate.close(rs);
+	    JDBCTemplate.close(pstmt);	    
+	    JDBCTemplate.close(conn);	    
+		
+	    return true;
 		
 	}
 
@@ -365,26 +328,15 @@ public class MemberDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			
-			try {
-				rs.close();
-				pstmt.close();
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}
-	
+		} 
+
+	    JDBCTemplate.close(rs);
+	    JDBCTemplate.close(pstmt);	    
+	    JDBCTemplate.close(conn);
+	    
 		return m;
 		
 	}
-	
-	
-  
-	
-	
+
 	
 }

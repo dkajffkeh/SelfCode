@@ -180,8 +180,6 @@ public class MemberMenu {
 		mc.modifyAccount(num, id, pwd, sNick);
 		
 		
-		
-		
 	}
 	
 	
