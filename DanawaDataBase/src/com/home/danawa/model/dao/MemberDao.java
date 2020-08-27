@@ -1,31 +1,39 @@
 package com.home.danawa.model.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.*;
+import java.sql.*;
+import java.util.*;
+import static com.home.danawa.model.dao.JDBCTemplate.*;
+import static com.home.danawa.model.dao.DBConnector.*;
 
 import com.home.danawa.model.vo.Member;
 
 public class MemberDao {
+	
+	Properties prop = new Properties();
+	
+   public MemberDao() {
+		
+		try {
+			prop.loadFromXML(new FileInputStream("resources/query.xml"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 
 	public int insertMember(Member m) {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;	
-		
-		String sql = "INSERT INTO MEMBER VALUES(SEQ_USERNO.NEXTVAL,?,?,?,?,?,?,?,?,?,?,DEFAULT)";
-				
-		
-	    conn = DBConnector.getConnection();
-		
+	
+	    conn = getConnection();
+	
 	    try {
             	
-	    	pstmt = conn.prepareStatement(sql);
+	    	pstmt = conn.prepareStatement(prop.getProperty("insertMember"));
 	    		    	
         	pstmt.setString(1, m.getUserId());
         	pstmt.setString(2, m.getUserPwd());
@@ -47,12 +55,11 @@ public class MemberDao {
 		 	}
 		 	
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 
-	    JDBCTemplate.close(pstmt);	    
-	    JDBCTemplate.close(conn);
+	    close(pstmt);	    
+	    close(conn);
 	    
 	    
 	   return result;
@@ -67,13 +74,12 @@ public class MemberDao {
 		
 		List<Member> list = new ArrayList<>();
 		
-		String sql ="SELECT * FROM MEMBER";
 		
-		conn = DBConnector.getConnection();
+		conn = getConnection();
 		
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
+			rs = stmt.executeQuery(prop.getProperty("scanMember"));
 			
 			while(rs.next()) {
 				
@@ -96,29 +102,26 @@ public class MemberDao {
 			}
 								
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 		
-	    JDBCTemplate.close(rs);
-	    JDBCTemplate.close(stmt);	    
-	    JDBCTemplate.close(conn);
+	   close(rs);
+	   close(stmt);	    
+	   close(conn);
 	  
        return list;
 	}
 
-	public static boolean idInspector(String string) {
+	public boolean idInspector(String string) {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-		String sql = "SELECT * FROM MEMBER";
-		
-		conn = DBConnector.getConnection();
+			
+		conn = getConnection();
 		
 		try {
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(prop.getProperty("idInspector"));
 			rs = pstmt.executeQuery();
 						
 			while(rs.next()) {
@@ -134,26 +137,26 @@ public class MemberDao {
 			e.printStackTrace();
 		} 
 
-	    JDBCTemplate.close(rs);
-	    JDBCTemplate.close(pstmt);	    
-	    JDBCTemplate.close(conn);
+	   close(rs);
+	   close(pstmt);	    
+	   close(conn);
 	    	    
 		return false;
 		
 	}
 	
-    public static boolean nickInspector(String string) {
+    public boolean nickInspector(String string) {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT * FROM MEMBER";
 		
-		conn = DBConnector.getConnection();
+		
+		conn = getConnection();
 		
 		try {
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(prop.getProperty("nickInspector"));
 			rs = pstmt.executeQuery();
 			
 			
@@ -166,13 +169,12 @@ public class MemberDao {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 
-	    JDBCTemplate.close(rs);
-	    JDBCTemplate.close(pstmt);	    
-	    JDBCTemplate.close(conn);    
+	    close(rs);
+	    close(pstmt);	    
+	    close(conn);    
 	    
 		return false;		
 	}
@@ -185,15 +187,10 @@ public class MemberDao {
 		
 		String id = null;
 		
-		conn = DBConnector.getConnection();
-		
-		String sql = "SELECT *"
-				+ "   FROM   MEMBER"
-				+ "   WHERE USERNAME = ?"
-				+ "   AND   USERSSN  = ?";
+		conn = getConnection();
 	
 		try {
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(prop.getProperty("searchMember"));
 			pstmt.setString(1, name);
 			pstmt.setString(2, ssn);			
 			rs = pstmt.executeQuery();
@@ -210,13 +207,12 @@ public class MemberDao {
 					
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}  
 
-	    JDBCTemplate.close(rs);
-	    JDBCTemplate.close(pstmt);	    
-	    JDBCTemplate.close(conn);
+	    close(rs);
+	    close(pstmt);	    
+	    close(conn);
 	    
 		return id;
 	}
@@ -228,13 +224,10 @@ public class MemberDao {
 		ResultSet rs = null;
 		
 		conn = DBConnector.getConnection();
-		String sql = "SELECT *"
-				+ "   FROM   MEMBER"
-				+ "   WHERE USERID = ?"
-				+ "   AND   USERPWD  = ?";
+		
 		
 		try {
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(prop.getProperty("idPwdCheck"));
 			pstmt.setString(1, id);
 			pstmt.setString(2, pwd);
 			rs = pstmt.executeQuery();
@@ -251,9 +244,9 @@ public class MemberDao {
 			e.printStackTrace();
 		} 
 
-	    JDBCTemplate.close(rs);
-	    JDBCTemplate.close(pstmt);	    
-	    JDBCTemplate.close(conn);	    
+	   close(rs);
+	   close(pstmt);	    
+	   close(conn);	    
 		
 	    return true;
 		
@@ -282,7 +275,7 @@ public class MemberDao {
 				 +   " WHERE USERID =? "
 				 +   " AND USERPWD  =? ";
 		
-		conn = DBConnector.getConnection();
+		conn = getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
@@ -330,9 +323,9 @@ public class MemberDao {
 			e.printStackTrace();
 		} 
 
-	    JDBCTemplate.close(rs);
-	    JDBCTemplate.close(pstmt);	    
-	    JDBCTemplate.close(conn);
+	    close(rs);
+	    close(pstmt);	    
+	    close(conn);
 	    
 		return m;
 		

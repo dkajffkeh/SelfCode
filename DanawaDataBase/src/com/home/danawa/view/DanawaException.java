@@ -11,7 +11,7 @@ private boolean back = false;
 	
 	public boolean idFormat(String id)  {
 
-	if(MemberDao.idInspector(id)) {		
+	if(new MemberDao().idInspector(id)) {		
 	   System.out.println("이미 사용중인 아이디 입니다.");
 	   return true;		
 	}
@@ -122,7 +122,7 @@ private boolean back = false;
 	public boolean nickFormat(String nick) {
 		
 		
-		   if(MemberDao.nickInspector(nick)) {		
+		   if(new MemberDao().nickInspector(nick)) {		
 			   System.out.println("이미 사용중인 아이디 입니다.");
 			   return true;		
 			}

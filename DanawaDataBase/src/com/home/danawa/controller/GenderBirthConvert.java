@@ -46,14 +46,7 @@ public class GenderBirthConvert {
 		}
 		
 		birth = year+"/"+ month+"/"+day;
-		
-		try {
-			Date date1 = new SimpleDateFormat("yyyy/MM/dd").parse(birth);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-				
+					
 	    return birth;
 	
 	}
