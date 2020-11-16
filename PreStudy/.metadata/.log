@@ -1,0 +1,47 @@
+!SESSION 2020-09-18 15:38:07.492 -----------------------------------------------
+eclipse.buildId=4.11.0.I20190307-0500
+java.version=1.8.0_202
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.egit.core 1 0 2020-09-18 15:38:16.025
+!MESSAGE Using Apache MINA sshd as ssh client.
+
+!ENTRY org.eclipse.jface.text 2 0 2020-09-18 15:38:19.909
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.boolean'
+
+!ENTRY org.eclipse.egit.ui 2 0 2020-09-18 15:38:24.689
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\yhy10'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY com.wakatime.eclipse.plugin 1 0 2020-09-18 15:38:25.424
+!MESSAGE Initializing WakaTime plugin (https://wakatime.com) v3.0.3
+
+!ENTRY com.wakatime.eclipse.plugin 1 0 2020-09-18 15:38:25.431
+!MESSAGE pythonw --version
+
+!ENTRY com.wakatime.eclipse.plugin 1 0 2020-09-18 15:38:25.446
+!MESSAGE Python 3.9.0b5
+
+!ENTRY com.wakatime.eclipse.plugin 1 0 2020-09-18 15:38:25.451
+!MESSAGE Found python binary: pythonw
+
+!ENTRY com.wakatime.eclipse.plugin 1 0 2020-09-18 15:38:25.725
+!MESSAGE wakatime cli version check output: "13.0.7"
+
+!ENTRY com.wakatime.eclipse.plugin 1 0 2020-09-18 15:38:25.729
+!MESSAGE wakatime cli version check exit code: 0
+
+!ENTRY com.wakatime.eclipse.plugin 1 0 2020-09-18 15:38:25.993
+!MESSAGE Current cli version from GitHub: 13.0.7
+
+!ENTRY com.wakatime.eclipse.plugin 1 0 2020-09-18 15:38:25.998
+!MESSAGE wakatime-cli is up to date.
+
+!ENTRY com.wakatime.eclipse.plugin 1 0 2020-09-18 15:38:26.002
+!MESSAGE CLI location: C:\Users\yhy10\AppData\Roaming\WakaTime\wakatime-master\wakatime\cli.py

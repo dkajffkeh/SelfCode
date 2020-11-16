@@ -12,14 +12,14 @@ import java.util.Properties;
 public class DBConnector {
 
 	public static Connection getConnection() {
-		
+
 		Properties prop = new Properties();
-		
+
 		String path = "resources/driver.properties";
-		
+
 		try {
 			prop.load(new FileReader(path));
-			
+
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -27,15 +27,15 @@ public class DBConnector {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-				
+
 		Connection conn = null;
-		
+
 		try {
 			Class.forName(prop.getProperty("driver"));
 			conn = DriverManager.getConnection(prop.getProperty("url")
-					                          ,prop.getProperty("id")
-					                          ,prop.getProperty("pwd"));
-			
+					,prop.getProperty("id")
+					,prop.getProperty("pwd"));
+
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -43,9 +43,9 @@ public class DBConnector {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
-	
+
 
 		return conn;
 	}
-	
+
 }

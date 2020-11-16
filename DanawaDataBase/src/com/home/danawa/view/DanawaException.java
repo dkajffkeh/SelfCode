@@ -8,6 +8,8 @@ import com.home.danawa.model.dao.MemberDao;
 public class DanawaException {
 	
 private boolean back = false;
+
+
 	
 	public boolean idFormat(String id)  {
 
