@@ -48,7 +48,7 @@ public class Book {
 		String category = "";
 		
 		switch(this.category) {
-		case 1:category = "Humaities"; break;
+		case 1:category = "Humanities"; break;
 		case 2:category = "Nature Science"; break;
 		case 3:category = "Medical"; break;
 		case 4:category = "other"; break;

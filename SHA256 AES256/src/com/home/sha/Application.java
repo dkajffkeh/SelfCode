@@ -8,13 +8,14 @@ public class Application {
 	public static void main(String[] args) {
 	
 		String id = "dkajffkeh";
-		String add = "성내천로 87 송파구 오금동 우방아파트";
-				
+		String add = "성내천로 87 송파구 오금동 우방아파트";				
 		
 		AES256 a256 = AES256.getInstance();
-	
+
+		System.out.println(a256.AES_Encode(add));
 		
-		System.out.println(a256.AES_Encode(id).equals("7joGPUEKSKhQeRNTaMePxA=="));
+		System.out.println(a256.AES_Decode(a256.AES_Encode(add)));
+		
 	}
 
 }
